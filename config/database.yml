@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  host: localhost
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: rails-jwt_dev
+
+
+test:
+  <<: *default
+  database: rails-jwt_te
+
+
+production:
+  <<: *default
+  database: rails-jwt_production
+  username: rails-jwt
+  password: <%= ENV['RAILS-JWT_DATABASE_PASSWORD'] %>
